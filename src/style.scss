@@ -92,12 +92,11 @@ $secondary-light-color: #111111;
   justify-content: center;
 
   .container {
-    border: 1px solid $primary-color;
     border-radius: 5px;
     display: flex;
     overflow: hidden;
-    width: 60%;
-    height: 70%;
+    width: 100%;
+    height: 100%;
 
     .sidebar {
       flex: 1;
@@ -111,6 +110,7 @@ $secondary-light-color: #111111;
 
         .logo {
           font-weight: 800;
+          font-size: 30px;
         }
 
         .user {
@@ -141,13 +141,25 @@ $secondary-light-color: #111111;
         border-bottom: 1px solid $primary-color;
 
         .searchForm {
-          padding: 10px;
+          border-top: 1px solid $primary-color;
+          border-bottom: 1px solid $primary-color;
 
           input {
+            width: 100%;
+            padding: 10px;
             color: $primary-color;
-            border: 1px solid $primary-color;
+            border: none;
             background-color: transparent;
             outline: none;
+
+            &::placeholder {
+              font-weight: 500;
+              font-size: 16px;
+            }
+
+            &:focus {
+              font-size: 16px;
+            }
           }
         }
 
@@ -187,6 +199,28 @@ $secondary-light-color: #111111;
       border-left: 1px solid $primary-color;
       background-color: $secondary-light-color;
       flex: 3;
+
+      .chatInfo {
+        height: 50px;
+        padding: 0px 10px;
+        background-color: $secondary-color;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $primary-color;
+
+        .chatIcons {
+          display: flex;
+          gap: 10px;
+
+          img {
+            width: 20px;
+            filter: invert(25%) sepia(70%) saturate(1826%) hue-rotate(119deg)
+              brightness(100%) contrast(106%);
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }
