@@ -1,5 +1,4 @@
 import React from "react";
-import Add from "../images/photo-plus.png";
 
 const Login = () => {
   return (

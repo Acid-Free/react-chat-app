@@ -1,5 +1,5 @@
 import React from "react";
-import Add from "../images/photo-plus.png";
+import AddIcon from "../images/photo-plus.png";
 
 const Register = () => {
   return (
@@ -13,7 +13,7 @@ const Register = () => {
           <input type="password" placeholder="password" />
           <input type="file" id="file" />
           <label htmlFor="file">
-            <img src={Add} alt="Add avatar image" />
+            <img src={AddIcon} alt="Add avatar image" />
             <span>Add an avatar</span>
           </label>
           <button>Sign up</button>
