@@ -15,7 +15,7 @@ import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage";
 
 const Input = () => {
-  const [error, setError] = useState(false);
+  const [err, setError] = useState(false);
 
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
@@ -31,7 +31,7 @@ const Input = () => {
 
       uploadTask.on(
         (error) => {
-          console.error(error);
+          console.error(error, err);
           setError(true);
         },
         async () => {
@@ -43,7 +43,7 @@ const Input = () => {
               text,
               senderId: currentUser.uid,
               date: Timestamp.now(),
-              img: downloadURL,
+              image: downloadURL,
             }),
           });
         }

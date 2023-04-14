@@ -1,24 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 
-const Message = () => {
+const Message = ({ message }) => {
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
+
   return (
-    <div className="message current">
+    <div
+      className={`message ${message.senderId === currentUser.uid && "current"}`}
+    >
       <div className="messageInfo">
         <img
-          src="https://howtodrawforkids.com/wp-content/uploads/2017/03/how-to-draw-a-face-step-by-step.jpg"
+          src={
+            message.senderId === currentUser.uid
+              ? currentUser.photoURL
+              : data.user.photoURL
+          }
           alt=""
         />
         <span>A few seconds ago</span>
       </div>
       <div className="messageContent">
-        <p>
-          hello hello hello hello hello hello hello hello hello hello hello{" "}
-          hello hello hello hello hello hello hello hello hello hello{" "}
-        </p>
-        <img
-          src="https://i0.wp.com/sketchbooknation.com/wp-content/uploads/2014/03/face9.gif?resize=400%2C480&ssl=1"
-          alt=""
-        />
+        <p>{message.text}</p>
+        {message.image && <img src={message.image} alt="Attached" />}
       </div>
     </div>
   );
