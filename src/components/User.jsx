@@ -9,8 +9,7 @@ const User = () => {
   return (
     <div className="user">
       <button onClick={() => signOut(auth)}>Log out</button>
-      {/* Placeholder image */}
-      <img src={currentUser.photoURL} alt="" />
+      <img src={currentUser.photoURL} alt="Current user avatar" />
       <span>{currentUser.displayName}</span>
     </div>
   );
