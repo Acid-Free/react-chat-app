@@ -1,17 +1,17 @@
 import { signOut } from "@firebase/auth";
-import React from "react";
+import React, { useContext } from "react";
 import { auth } from "../firebase";
+import { AuthContext } from "../context/AuthContext";
 
 const User = () => {
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className="user">
       <button onClick={() => signOut(auth)}>Log out</button>
       {/* Placeholder image */}
-      <img
-        src="https://howtodrawforkids.com/wp-content/uploads/2017/03/how-to-draw-a-face-step-by-step.jpg"
-        alt=""
-      />
-      <span>Sian Caleb</span>
+      <img src={currentUser.photoURL} alt="" />
+      <span>{currentUser.displayName}</span>
     </div>
   );
 };

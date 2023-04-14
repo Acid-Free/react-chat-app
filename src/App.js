@@ -12,10 +12,12 @@ function App() {
   console.log("Context:", currentUser);
 
   // Prevents unauthorized routing to index
-  const ProtectedRoute = () => {
+  const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
       return <Navigate to="/login" />;
     }
+
+    return children;
   };
 
   return (
