@@ -4,9 +4,12 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import AddIcon from "../images/photo-plus.png";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,6 +54,9 @@ const Register = () => {
 
           // Create a document for a list of people a user interacted to
           await setDoc(doc(db, "userChats", response.user.uid), {});
+
+          // Redirect to home page after successful registration
+          navigate("/");
         }
       );
     } catch (error) {
