@@ -1,4 +1,5 @@
 $primary-color: #007c21;
+$primary-dark-color: #005d19;
 $secondary-color: #000000;
 $secondary-dark-color: #0b0b0b;
 $secondary-light-color: #171717;
@@ -61,6 +62,10 @@ $secondary-light-color: #171717;
         font-weight: 800;
         border: none;
         cursor: pointer;
+
+        &:hover {
+          background-color: $secondary-dark-color;
+        }
       }
 
       label {
@@ -104,6 +109,12 @@ $secondary-light-color: #171717;
 
     .sidebar {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      > * {
+        flex-grow: 0;
+      }
 
       .navbar {
         display: flex;
@@ -115,28 +126,6 @@ $secondary-light-color: #171717;
         .logo {
           font-weight: 800;
           font-size: 30px;
-        }
-
-        .user {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-
-          img {
-            background-color: $primary-color;
-            width: 30px;
-            height: 30px;
-            object-fit: cover;
-            border-radius: 50%;
-          }
-
-          button {
-            background-color: $primary-color;
-            border: none;
-            border-radius: 4px;
-            font-size: 10px;
-            cursor: pointer;
-          }
         }
       }
 
@@ -191,6 +180,37 @@ $secondary-light-color: #171717;
             height: 50px;
             object-fit: cover;
             border-radius: 50%;
+          }
+        }
+      }
+
+      .user {
+        flex-grow: 1;
+        display: flex;
+        align-items: end;
+        padding: 10px;
+        gap: 8px;
+
+        img {
+          background-color: $primary-color;
+          width: 30px;
+          height: 30px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+
+        button {
+          width: 50px;
+          height: 30px;
+          background-color: $secondary-dark-color;
+          color: $primary-color;
+          border: none;
+          border-radius: 0px 10px 10px 0px;
+          font-size: 10px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $secondary-light-color;
           }
         }
       }
@@ -328,6 +348,10 @@ $secondary-light-color: #171717;
             border-radius: 4px;
             width: 60px;
             height: 40px;
+
+            &:hover {
+              background-color: $primary-dark-color;
+            }
           }
         }
       }
