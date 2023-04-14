@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { loginUser } from "../auth";
+import { loginUser } from "../../backend/auth";
 
 const Login = () => {
   const [error, setError] = useState("");

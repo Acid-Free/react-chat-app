@@ -1,7 +1,7 @@
 import { signOut } from "@firebase/auth";
 import React, { useContext } from "react";
-import { auth } from "../firebase";
-import { AuthContext } from "../context/AuthContext";
+import { auth } from "../../backend/firebase";
+import { AuthContext } from "../../backend/context/AuthContext";
 
 const User = () => {
   const { currentUser } = useContext(AuthContext);

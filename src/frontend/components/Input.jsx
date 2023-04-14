@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import AttachImageIcon from "../images/photo-plus.png";
 import AttachIcon from "../images/paperclip.png";
-import { ChatContext } from "../context/ChatContext";
-import { AuthContext } from "../context/AuthContext";
-import { handleSendMessage } from "../handleSendMessage";
+import { ChatContext } from "../../backend/context/ChatContext";
+import { AuthContext } from "../../backend/context/AuthContext";
+import { handleSendMessage } from "../../backend/handleSendMessage";
 
 const Input = () => {
   const [err, setError] = useState(false);
