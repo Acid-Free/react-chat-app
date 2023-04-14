@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, storage } from "../firebase";
+import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import AddIcon from "../images/photo-plus.png";
 
@@ -31,13 +32,25 @@ const Register = () => {
           console.error(error);
           setError(true);
         },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateProfile(response.user, {
-              displayName: name,
-              photoURL: downloadURL,
-            });
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+          // Add updated name and avatar URL to user data in auth
+          await updateProfile(response.user, {
+            displayName: name,
+            photoURL: downloadURL,
           });
+
+          // Save user information to users collection (this is separate from authentication db)
+          await setDoc(doc(db, "users", response.user.uid), {
+            uid: response.user.uid,
+            name,
+            email,
+            photoURL: downloadURL,
+          });
+
+          // Create a document for a list of people a user interacted to
+          await setDoc(doc(db, "userChats", response.user.uid), {});
         }
       );
     } catch (error) {
@@ -57,7 +70,7 @@ const Register = () => {
           <input type="password" placeholder="password" />
           <input type="file" id="file" />
           <label htmlFor="file">
-            <img src={AddIcon} alt="Add avatar image" />
+            <img src={AddIcon} alt="Add avatar" />
             <span>Add an avatar</span>
           </label>
           <button>Sign up</button>
