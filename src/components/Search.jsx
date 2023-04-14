@@ -81,6 +81,9 @@ const Search = () => {
       console.error(error);
       setError(true);
     }
+
+    setUser(null);
+    setUsername("");
   };
 
   return (
@@ -91,6 +94,7 @@ const Search = () => {
           placeholder="Search for user"
           onKeyDown={handleKey}
           onChange={(event) => setUsername(event.target.value)}
+          value={username}
         />
       </div>
       {error && <span>Something unexpected happened</span>}
