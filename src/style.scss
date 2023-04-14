@@ -4,6 +4,24 @@ $secondary-color: #000000;
 $secondary-dark-color: #0b0b0b;
 $secondary-light-color: #171717;
 
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
 .formContainer {
   background-color: $secondary-color;
   height: 100vh;
@@ -109,12 +127,9 @@ $secondary-light-color: #171717;
 
     .sidebar {
       flex: 1;
+      position: relative;
       display: flex;
       flex-direction: column;
-
-      > * {
-        flex-grow: 0;
-      }
 
       .navbar {
         display: flex;
@@ -125,7 +140,10 @@ $secondary-light-color: #171717;
 
         .logo {
           font-weight: 800;
-          font-size: 30px;
+          font-size: 20px;
+          @include tablet {
+            display: none;
+          }
         }
       }
 
@@ -172,6 +190,9 @@ $secondary-light-color: #171717;
 
             p {
               font-size: 13px;
+              @include laptop {
+                display: none;
+              }
             }
           }
 
@@ -185,11 +206,19 @@ $secondary-light-color: #171717;
       }
 
       .user {
-        flex-grow: 1;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        border-top: 1px solid $primary-color;
         display: flex;
         align-items: end;
         padding: 10px;
         gap: 8px;
+
+        @include laptop {
+          justify-content: space-evenly;
+        }
 
         img {
           background-color: $primary-color;
@@ -197,6 +226,16 @@ $secondary-light-color: #171717;
           height: 30px;
           object-fit: cover;
           border-radius: 50%;
+        }
+
+        span {
+          padding: 5px 0px;
+          font-weight: 800;
+          font-size: 14px;
+
+          @include laptop {
+            display: none;
+          }
         }
 
         button {
@@ -219,14 +258,14 @@ $secondary-light-color: #171717;
     .chat {
       border-left: 1px solid $primary-color;
       background-color: $secondary-light-color;
-      flex: 3;
+      flex: 4;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
       .chatInfo {
-        height: 50px;
-        padding: 0px 10px;
+        min-height: 30px;
+        padding: 10px;
         background-color: $secondary-color;
         display: flex;
         align-items: center;
