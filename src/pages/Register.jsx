@@ -29,8 +29,9 @@ const Register = () => {
         password
       );
 
-      // Uses username for referencing user image
-      const storageRef = ref(storage, displayName);
+      // Uses current datetime and username for referencing user image
+      const dateTime = new Date().getTime();
+      const storageRef = ref(storage, `${dateTime + displayName}`);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
