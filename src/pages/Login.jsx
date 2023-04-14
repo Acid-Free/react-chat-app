@@ -5,7 +5,7 @@ import { auth } from "../firebase";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       console.error(error);
-      setError(true);
+      setError(error.code);
     }
   };
 
@@ -33,7 +33,7 @@ const Login = () => {
           <input type="email" placeholder="email" />
           <input type="password" placeholder="password" />
           <button>Log in</button>
-          {error && <span>Something went wrong.</span>}
+          {error && <span>{error}</span>}
         </form>
         <p>
           Don't have an account? <Link to="/register">Register</Link>

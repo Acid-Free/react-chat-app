@@ -7,7 +7,7 @@ import AddIcon from "../images/photo-plus.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [uploading, setUploading] = useState(false);
 
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Register = () => {
       uploadTask.on(
         (error) => {
           console.error(error);
-          setError(true);
+          setError(error.code);
           setUploading(false);
         },
         async () => {
@@ -67,8 +67,10 @@ const Register = () => {
       );
     } catch (error) {
       console.error(error);
-      setError(true);
+      setError(error.code);
       setUploading(false);
+      await auth.currentUser.delete();
+      console.log("User account revoked successfully");
     }
   };
 
@@ -88,7 +90,7 @@ const Register = () => {
           </label>
           <button disabled={uploading}>Sign up</button>
           {uploading && <span>Profile picture still uploading</span>}
-          {error && <span>Something went wrong.</span>}
+          {error && <span>{error}</span>}
         </form>
         <p>
           Do you have an account? <Link to="/login">Login</Link>
