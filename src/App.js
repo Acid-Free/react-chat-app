@@ -3,8 +3,14 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./style.scss";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
+  const { currentUser } = useContext(AuthContext);
+
+  console.log("Context:", currentUser);
+
   return (
     <BrowserRouter>
       <Routes>
