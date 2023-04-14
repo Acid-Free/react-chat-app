@@ -8,11 +8,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [error, setError] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setUploading(true);
+
     const displayName = event.target[0].value;
     const email = event.target[1].value;
     const password = event.target[2].value;
@@ -34,6 +38,7 @@ const Register = () => {
         (error) => {
           console.error(error);
           setError(true);
+          setUploading(false);
         },
         async () => {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
@@ -62,6 +67,7 @@ const Register = () => {
     } catch (error) {
       console.error(error);
       setError(true);
+      setUploading(false);
     }
   };
 
@@ -71,15 +77,16 @@ const Register = () => {
         <span className="logo">Generic Chat</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="display name" />
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
-          <input type="file" id="file" />
+          <input type="text" placeholder="display name" required />
+          <input type="email" placeholder="email" required />
+          <input type="password" placeholder="password" required />
+          <input type="file" id="file" required />
           <label htmlFor="file">
             <img src={AddIcon} alt="Add avatar" />
             <span>Add an avatar</span>
           </label>
-          <button>Sign up</button>
+          <button disabled={uploading}>Sign up</button>
+          {uploading && <span>Profile picture still uploading</span>}
           {error && <span>Something went wrong.</span>}
         </form>
         <p>
