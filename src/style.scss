@@ -161,10 +161,10 @@ $secondary-light-color: #171717;
 
         .searchForm {
           border-top: 1px solid $primary-color;
-          border-bottom: 1px solid $primary-color;
+          background-color: $secondary-dark-color;
 
           input {
-            width: 100%;
+            width: fit-content;
             padding: 10px;
             color: $primary-color;
             border: none;

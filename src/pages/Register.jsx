@@ -13,7 +13,7 @@ const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const name = event.target[0].value;
+    const displayName = event.target[0].value;
     const email = event.target[1].value;
     const password = event.target[2].value;
     const file = event.target[3].files[0];
@@ -26,7 +26,7 @@ const Register = () => {
       );
 
       // Uses username for referencing user image
-      const storageRef = ref(storage, name);
+      const storageRef = ref(storage, displayName);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -40,14 +40,14 @@ const Register = () => {
 
           // Add updated name and avatar URL to user data in auth
           await updateProfile(response.user, {
-            displayName: name,
+            displayName,
             photoURL: downloadURL,
           });
 
           // Save user information to users collection (this is separate from authentication db)
           await setDoc(doc(db, "users", response.user.uid), {
             uid: response.user.uid,
-            name,
+            displayName,
             email,
             photoURL: downloadURL,
           });
