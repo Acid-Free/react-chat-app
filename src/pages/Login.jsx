@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
 import { Link } from "react-router-dom";
+import { loginUser } from "../auth";
 
 const Login = () => {
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -14,13 +12,13 @@ const Login = () => {
     const email = event.target[0].value;
     const password = event.target[1].value;
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
+    const errorCode = await loginUser(email, password); // Call the loginUser function
+
+    if (!errorCode) {
       // Redirect to home page after successful sign in
       navigate("/");
-    } catch (error) {
-      console.error(error);
-      setError(error.code);
+    } else {
+      setError(errorCode);
     }
   };
 
