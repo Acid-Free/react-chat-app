@@ -106,6 +106,14 @@ $secondary-light-color: #171717;
       color: $primary-color;
       font-size: 12px;
       margin-top: 10px;
+
+      a {
+        color: $primary-color;
+
+        &:visited {
+          color: $primary-dark-color;
+        }
+      }
     }
   }
 }

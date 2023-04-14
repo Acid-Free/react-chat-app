@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [error, setError] = useState(false);
@@ -34,7 +35,9 @@ const Login = () => {
           <button>Log in</button>
           {error && <span>Something went wrong.</span>}
         </form>
-        <p>Don't have an account? Register</p>
+        <p>
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
       </div>
     </div>
   );
