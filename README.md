@@ -17,3 +17,6 @@ A simple react chat application for a full-stack developer assessment.
 ## How to Build
 
 `npm run build`
+
+## Screenshots
+<img src="chat-screenshot.png" alt="Collage of pages" width="800px">
