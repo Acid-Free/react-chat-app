@@ -59,7 +59,7 @@ const Search = () => {
 
         // Create user chats for the current user
         await updateDoc(doc(db, "userChats", currentUser.uid), {
-          [combinedId + "userInfo"]: {
+          [combinedId + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
             photoURL: user.photoURL,
@@ -69,7 +69,7 @@ const Search = () => {
 
         // Create user chats for the other user
         await updateDoc(doc(db, "userChats", user.uid), {
-          [combinedId + "userInfo"]: {
+          [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
