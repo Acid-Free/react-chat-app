@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import Message from "./Message";
-import { ChatContext } from "../context/ChatContext";
+import { ChatContext } from "../../backend/context/ChatContext";
 import { doc, onSnapshot } from "@firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../backend/firebase";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);

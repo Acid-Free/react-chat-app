@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { searchUser, createChat } from "../searchUtils";
+import { AuthContext } from "../../backend/context/AuthContext";
+import { searchUser, createChat } from "../../backend/searchUtils";
 
 const Search = () => {
   const [username, setUsername] = useState("");

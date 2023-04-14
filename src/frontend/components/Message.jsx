@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { ChatContext } from "../context/ChatContext";
-import { getTimeAgo } from "../helpers/Time";
+import { AuthContext } from "../../backend/context/AuthContext";
+import { ChatContext } from "../../backend/context/ChatContext";
+import { getTimeAgo } from "../../backend/helpers/Time";
 
 const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);

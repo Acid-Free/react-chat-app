@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddIcon from "../images/photo-plus.png";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "../registerUser";
+import { registerUser } from "../../backend/registerUser";
 
 const Register = () => {
   const [error, setError] = useState("");

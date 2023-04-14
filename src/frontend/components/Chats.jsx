@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { db } from "../firebase";
+import { db } from "../../backend/firebase";
 import { doc, onSnapshot } from "@firebase/firestore";
-import { AuthContext } from "../context/AuthContext";
-import { ChatContext } from "../context/ChatContext";
+import { AuthContext } from "../../backend/context/AuthContext";
+import { ChatContext } from "../../backend/context/ChatContext";
 
 const Chats = () => {
   // chats[0] holds key while chats[1] holds the content

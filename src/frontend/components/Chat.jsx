@@ -4,7 +4,7 @@ import AddIcon from "../images/user-plus.png";
 import MoreIcon from "../images/dots.png";
 import Messages from "./Messages";
 import Input from "./Input";
-import { ChatContext } from "../context/ChatContext";
+import { ChatContext } from "../../backend/context/ChatContext";
 
 const Chat = () => {
   const { data } = useContext(ChatContext);
