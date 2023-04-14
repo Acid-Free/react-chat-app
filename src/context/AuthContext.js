@@ -10,7 +10,6 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      console.log("Current User:", user);
     });
 
     // Unsubscribe to side effect to prevent memory leaks

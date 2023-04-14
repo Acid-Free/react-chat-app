@@ -4,7 +4,6 @@ import { ChatContext } from "../context/ChatContext";
 import { getTimeAgo } from "../helpers/Time";
 
 const Message = ({ message }) => {
-  console.log(message.date);
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 

@@ -9,8 +9,6 @@ import { AuthContext } from "./context/AuthContext";
 function App() {
   const { currentUser } = useContext(AuthContext);
 
-  console.log("Context:", currentUser);
-
   // Prevents unauthorized routing to index
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
