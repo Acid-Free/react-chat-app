@@ -1,28 +1,49 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
-import React from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, storage } from "../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import React, { useState } from "react";
 import AddIcon from "../images/photo-plus.png";
 
 const Register = () => {
-  const handleSubmit = (event) => {
+  const [error, setError] = useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const name = event.target[0].value;
     const email = event.target[1].value;
     const password = event.target[2].value;
     const file = event.target[3].files[0];
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
+    try {
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(errorCode, errorMessage);
-      });
+      // Uses username for referencing user image
+      const storageRef = ref(storage, name);
+
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        (error) => {
+          console.error(error);
+          setError(true);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateProfile(response.user, {
+              displayName: name,
+              photoURL: downloadURL,
+            });
+          });
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      setError(true);
+    }
   };
 
   return (
@@ -40,6 +61,7 @@ const Register = () => {
             <span>Add an avatar</span>
           </label>
           <button>Sign up</button>
+          {error && <span>Something went wrong.</span>}
         </form>
         <p>Do you have an account? Login</p>
       </div>
